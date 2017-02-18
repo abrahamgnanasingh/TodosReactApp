@@ -8,7 +8,7 @@ class Home extends Component {
 		return (
 			<div>
 				<RaisedButton label="Click Me!" />
-				<Glyphicon className="glyphicon-user" />
+				<Glyphicon glyph="user" />
 			</div>
 		)
 	}
