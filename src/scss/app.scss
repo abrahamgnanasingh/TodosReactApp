@@ -1,0 +1,54 @@
+.app {
+  text-align: center;
+}
+
+.app-logo {
+  animation: app-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.app-header {
+  background-color: #222;
+  padding: 20px;
+  color: white;
+}
+
+.app-intro {
+  font-size: large;
+}
+
+@keyframes app-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ----------------------------------------------------- */
+$todo-list-color: #337ab7;
+
+.nav-container {
+  position: absolute;
+  top: 65px;
+}
+
+.signin-page-container .signin-form-container {
+  padding-top: 15px;
+}
+
+.spinner {
+  position: relative;
+  top: 50%;
+  text-align: center;
+}
+
+.no-items {
+  margin-bottom: 15px;
+}
+
+.todos-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todos-list li {
+  color: $todo-list-color;
+}
