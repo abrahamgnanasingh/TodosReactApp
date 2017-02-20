@@ -1,6 +1,6 @@
 
 const constants = {
-	appName: 'TodosReactApp'
+	appName: 'Todos React App'
 };
 
 export default constants;
