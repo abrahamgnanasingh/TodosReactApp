@@ -1,4 +1,6 @@
 
+const fetchUserFulfilled = payload => ({ type: 'FETCH_USER_FULFILLED', payload });
+
 const fakeAjax = url =>
   Observable.of({
     id: url.substring(url.lastIndexOf('/') + 1),
@@ -7,10 +9,10 @@ const fakeAjax = url =>
   }).delay(1000);
 
 export const fetchUserEpic = action$ => {
-    return action$.ofType('FETCH_USER')
-                .mergeMap(action =>
-                    fakeAjax(`api/users/${action.payload}`)
-                        .map(payload => { type: 'FETCH_USER_FULFILLED', payload })
-                            .takeUntil(action$.ofType('FETCH_USER_CANCELLED'))
-                );
+  return action$.ofType('FETCH_USER')
+          .mergeMap(action =>
+            fakeAjax(`api/users/${action.payload}`)
+              .map(payload => fetchUserFulfilled)
+                .takeUntil(action$.ofType('FETCH_USER_CANCELLED'))
+          );
 };

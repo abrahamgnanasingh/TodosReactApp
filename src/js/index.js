@@ -17,6 +17,7 @@ import fetchUserEpic from './epics/fetch-user-epic';
 
 const rootEpic = combineEpics(fetchUserEpic);
 const epicMiddleware = createEpicMiddleware(rootEpic);
+// console.log(epicMiddleware);
 
 const store = createStore(allReducers, applyMiddleware());
 
