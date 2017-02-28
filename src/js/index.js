@@ -1,8 +1,9 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -12,7 +13,12 @@ import App from './app';
 
 import allReducers from './reducers';
 
-const store = createStore(allReducers);
+import fetchUserEpic from './epics/fetch-user-epic';
+
+const rootEpic = combineEpics(fetchUserEpic);
+const epicMiddleware = createEpicMiddleware(rootEpic);
+
+const store = createStore(allReducers, applyMiddleware());
 
 injectTapEventPlugin();
 
