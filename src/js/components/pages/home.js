@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Rx from 'rxjs/Rx';
 import AutoComplete from 'material-ui/AutoComplete';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { fetchUser, cancelFetchUser } from '../../actions/users';
