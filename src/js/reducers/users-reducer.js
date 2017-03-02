@@ -1,4 +1,4 @@
-// reducers always return a new instance
+// reducers should always return a new instance
 
 export const users = (state = [], action) => {
   switch (action.type) {
@@ -6,7 +6,7 @@ export const users = (state = [], action) => {
         return [];
 
     case 'FETCH_USER_FULFILLED':
-      return [action.payload];
+      return action.payload;
 
     default:
       return state;

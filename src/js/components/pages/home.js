@@ -10,7 +10,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { fetchUser, cancelFetchUser } from '../../actions/users';
 
 class Home extends Component {
-
 	constructor(props) {
 		super(props);
 
@@ -18,16 +17,20 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-		var cancelBtn = ReactDOM.findDOMNode(this.refs.cancelBtn).firstChild;
-		Rx.Observable.fromEvent(cancelBtn, 'click')
-			.subscribe(ev => {
-				console.log(ev);
-				this.props.cancelFetchUser();
-			});
+		// var cancelBtn = ReactDOM.findDOMNode(this.refs.cancelBtn).firstChild;
+		// Rx.Observable.fromEvent(cancelBtn, 'click')
+		// 	.subscribe(ev => {
+		// 		console.log(ev);
+		// 		this.props.cancelFetchUser();
+		// 	});
 	}
 
 	handleUpdateInput(searchText) {
-		this.props.fetchUser('redux-observable');
+		const { fetchUser, cancelFetchUser } = this.props;
+
+		if(!searchText) return;
+		cancelFetchUser();
+		fetchUser(searchText);
 	}
 
 	handleNewRequest(selected) {
@@ -44,16 +47,17 @@ class Home extends Component {
 			<div>
 				<AutoComplete
 					floatingLabelText="Type Something"
+					filter={AutoComplete.noFilter}
 					dataSource={this.props.users}
 					dataSourceConfig={dataSourceConfig}
 					onUpdateInput={this.handleUpdateInput}
 					onNewRequest={this.handleNewRequest}
+					openOnFocus={true}
 				/>
-				<RaisedButton ref="cancelBtn" label="Cancel!" />
+				{ /* <RaisedButton ref="cancelBtn" label="Cancel!" /> */ }
 			</div>
 		)
 	}
-
 }
 
 function mapStateToProps(state) {
